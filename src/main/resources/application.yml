@@ -1,0 +1,35 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: spring-demo
+  jpa:
+    hibernate:
+      globally-quoted-identifiers: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: update
+    datasource:
+      url: jdbc:h2:mem:testdb
+      driverClassName: org.h2.Driver
+      username: sa
+      password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+logging:
+  level:
+    root: INFO
+#----------------------------------------------------------------------------------#
+#sentry
+mockup:
+  enabled:
+    sentry: false
+    dsn:
+      url:
+    application:
+      environment: dev
+
