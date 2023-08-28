@@ -1,9 +1,9 @@
-package com.brilworks.mockup.rest;
+package com.brilworks.mockup.rest.user;
 
 import com.brilworks.mockup.dto.ResponseListEntity;
 import com.brilworks.mockup.entity.User;
 import com.brilworks.mockup.exceptions.EntityNotFoundException;
-import com.brilworks.mockup.service.UserService;
+import com.brilworks.mockup.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

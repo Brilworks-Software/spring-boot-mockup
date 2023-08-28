@@ -2,7 +2,8 @@ package com.brilworks.mockup.rest;
 
 import com.brilworks.mockup.dto.ResponseListEntity;
 import com.brilworks.mockup.entity.User;
-import com.brilworks.mockup.service.UserService;
+import com.brilworks.mockup.rest.user.UserController;
+import com.brilworks.mockup.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,9 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 

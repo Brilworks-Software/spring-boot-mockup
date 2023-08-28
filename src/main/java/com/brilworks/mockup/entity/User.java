@@ -25,6 +25,8 @@ public class User extends BaseEntity {
     private String name;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
+    private String password;
 
     public User(int userId) {
         this.id = userId;

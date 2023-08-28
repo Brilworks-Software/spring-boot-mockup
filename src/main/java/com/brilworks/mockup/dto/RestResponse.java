@@ -7,14 +7,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RestResponse {
     private boolean success = true;
     private Object result;
     private RestError error;
 
-    public RestResponse(boolean success){
+    public RestResponse(boolean success) {
         this.success = success;
     }
 
@@ -23,7 +23,7 @@ public class RestResponse {
         this.result = result;
     }
 
-    public RestResponse(Object body){
+    public RestResponse(Object body) {
         this.result = body;
     }
 }
