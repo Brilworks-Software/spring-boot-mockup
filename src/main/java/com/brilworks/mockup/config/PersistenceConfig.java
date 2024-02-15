@@ -21,7 +21,9 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @RequiredArgsConstructor
-@EnableJpaRepositories(basePackages = {"com.brilworks.mockup.repository"})
+@EnableJpaRepositories(basePackages = {"com.brilworks.mockup.repository",
+                                       "com.brilworks.mockup.modules.user.repository",
+                                        "com.brilworks.mockup.modules.social.repository"})
 public class PersistenceConfig {
 
     @Value("${spring.jpa.datasource.url}")
@@ -40,8 +42,7 @@ public class PersistenceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.brilworks.mockup.entity");
-
+        em.setPackagesToScan("com.brilworks.mockup.modules.user.model", "com.brilworks.mockup.modules.social.model");
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.H2);
         vendorAdapter.setGenerateDdl(true);

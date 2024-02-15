@@ -45,3 +45,27 @@ rate:
     request:
       time: 1
       limit: 3
+
+#------------------------------------twilio configuration------------------------------------#
+
+twilio:
+  account:
+    sid: yourTwilioAccountSID
+  auth:
+    token: yourTwilioAuthToken
+  phone:
+    number: yourTwilioNumber
+
+#------------------------------------vonage configuration------------------------------------#
+
+vonage:
+  api:
+    key: yourVonageAPIKey
+    secret: yourVonageAPISecret
+
+
+#------------------------------------textgrid configuration------------------------------------#
+
+textgrid:
+  authToken: yourTextgridAuthToken
+  accountsid: yourTextgridAccountSID
