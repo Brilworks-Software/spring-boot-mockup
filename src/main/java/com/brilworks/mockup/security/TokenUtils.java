@@ -1,7 +1,6 @@
 package com.brilworks.mockup.security;
 
-
-import com.brilworks.mockup.entity.User;
+import com.brilworks.mockup.modules.user.model.AuthUser;
 import com.brilworks.mockup.utils.DateUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -45,7 +44,7 @@ public class TokenUtils {
         return claims;
     }
 
-    public String generateToken(User user) {
+    public String generateToken(AuthUser user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", user.getEmail());
         claims.put("created", DateUtils.generateCurrentDate());

@@ -1,9 +1,9 @@
 package com.brilworks.mockup.rest;
 
 import com.brilworks.mockup.dto.ResponseListEntity;
-import com.brilworks.mockup.entity.User;
-import com.brilworks.mockup.rest.user.UserController;
-import com.brilworks.mockup.service.user.UserService;
+import com.brilworks.mockup.modules.user.model.AuthUser;
+import com.brilworks.mockup.modules.user.rest.UserController;
+import com.brilworks.mockup.modules.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,10 +41,10 @@ class UserControllerTest {
 
     @Test
     void testCreateUser() {
-        User user = new User();
+        AuthUser user = new AuthUser();
         when(userService.createUser(any())).thenReturn(user);
 
-        ResponseEntity<User> responseEntity = userController.createUser(user);
+        ResponseEntity<AuthUser> responseEntity = userController.createUser(user);
 
         assertEquals(user, responseEntity.getBody());
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
@@ -53,10 +53,10 @@ class UserControllerTest {
     @Test
     void testGetUserById() {
         int userId = 1;
-        User user = new User(userId);
+        AuthUser user = new AuthUser(userId);
         when(userService.getUserById(userId)).thenReturn(Optional.of(user));
 
-        ResponseEntity<User> responseEntity = userController.getUserById(userId);
+        ResponseEntity<AuthUser> responseEntity = userController.getUserById(userId);
 
         assertEquals(user, responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -65,10 +65,10 @@ class UserControllerTest {
     @Test
     void testUpdateUser() {
         int userId = 1;
-        User user = new User(userId);
+        AuthUser user = new AuthUser(userId);
         when(userService.updateUser(any())).thenReturn(user);
 
-        ResponseEntity<User> responseEntity = userController.updateUser(userId, user);
+        ResponseEntity<AuthUser> responseEntity = userController.updateUser(userId, user);
 
         assertEquals(user, responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -90,13 +90,13 @@ class UserControllerTest {
         int size = 2;
         Pageable pageable = PageRequest.of(page, size);
 
-        List<User> userList = new ArrayList<>();
-        userList.add(new User(1, "John Doe", "john.doe@example.com"));
-        userList.add(new User(2, "Jane Smith", "jane.smith@example.com"));
-        Page<User> pageResult = new PageImpl<>(userList);
+        List<AuthUser> userList = new ArrayList<>();
+        userList.add(new AuthUser(1, "John Doe", "john.doe@example.com"));
+        userList.add(new AuthUser(2, "Jane Smith", "jane.smith@example.com"));
+        Page<AuthUser> pageResult = new PageImpl<>(userList);
         when(userService.getAllUsers(pageable)).thenReturn(pageResult);
 
-        ResponseEntity<ResponseListEntity<User>> response = userController.getAllUsers(page, size, null);
+        ResponseEntity<ResponseListEntity<AuthUser>> response = userController.getAllUsers(page, size, null);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(userList, response.getBody().getData());
@@ -110,12 +110,12 @@ class UserControllerTest {
         Pageable pageable = PageRequest.of(page, size);
 
         String searchQuery = "John";
-        List<User> userList = new ArrayList<>();
-        userList.add(new User(1, "John Doe", "john.doe@example.com"));
-        Page<User> pageResult = new PageImpl<>(userList);
+        List<AuthUser> userList = new ArrayList<>();
+        userList.add(new AuthUser(1, "John Doe", "john.doe@example.com"));
+        Page<AuthUser> pageResult = new PageImpl<>(userList);
         when(userService.searchUsers(searchQuery, pageable)).thenReturn(pageResult);
 
-        ResponseEntity<ResponseListEntity<User>> response = userController.getAllUsers(page, size, searchQuery);
+        ResponseEntity<ResponseListEntity<AuthUser>> response = userController.getAllUsers(page, size, searchQuery);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(userList, response.getBody().getData());
